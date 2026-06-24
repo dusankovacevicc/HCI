@@ -1,0 +1,126 @@
+<UserControl x:Class="NetworkService.Views.AddEntityView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             FontFamily="{StaticResource AppFont}">
+
+    <UserControl.Resources>
+        <!-- Virtual keyboard key style -->
+        <Style x:Key="Key" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+            <Setter Property="Background" Value="{StaticResource PanelAltBrush}" />
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Height" Value="34" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="18,14">
+            <TextBlock Text="Novi entitet" Style="{StaticResource SectionTitle}" />
+
+            <!-- ID -->
+            <TextBlock Text="ID (ceo broj, jedinstven)" Style="{StaticResource FieldLabel}" />
+            <TextBox x:Name="IdBox" Style="{StaticResource AppTextBox}"
+                     GotFocus="IdBox_GotFocus"
+                     Text="{Binding IdText, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Style="{StaticResource ErrorText}" Text="{Binding IdError}"
+                       Visibility="{Binding HasIdError, Converter={StaticResource BoolToVis}}" />
+
+            <!-- Name -->
+            <TextBlock Text="Naziv" Style="{StaticResource FieldLabel}" />
+            <TextBox x:Name="NameBox" Style="{StaticResource AppTextBox}"
+                     GotFocus="NameBox_GotFocus"
+                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Style="{StaticResource ErrorText}" Text="{Binding NameError}"
+                       Visibility="{Binding HasNameError, Converter={StaticResource BoolToVis}}" />
+
+            <!-- Type -->
+            <TextBlock Text="Tip entiteta" Style="{StaticResource FieldLabel}" />
+            <ComboBox ItemsSource="{Binding Types}" SelectedItem="{Binding SelectedType}"
+                      DisplayMemberPath="Name" Height="34" FontSize="14"
+                      ToolTip="Izaberite tip: RTD ili TermoSprega" />
+            <TextBlock Style="{StaticResource ErrorText}" Text="{Binding TypeError}"
+                       Visibility="{Binding HasTypeError, Converter={StaticResource BoolToVis}}" />
+
+            <!-- Actions -->
+            <Grid Margin="0,16,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Style="{StaticResource AccentButton}"
+                        Command="{Binding SaveCommand}" Content="Sačuvaj" />
+                <Button Grid.Column="2" Style="{StaticResource BaseButton}"
+                        Command="{Binding CancelCommand}" Content="Otkaži" />
+            </Grid>
+
+            <!-- Virtual keyboard (custom, no NuGet) -->
+            <TextBlock Text="Virtuelna tastatura" Style="{StaticResource SectionTitle}"
+                       FontSize="16" Margin="0,18,0,6" />
+            <Border Background="{StaticResource PanelBrush}" CornerRadius="10" Padding="6">
+                <StackPanel>
+                    <UniformGrid Rows="1" Columns="10">
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="1" Content="1" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="2" Content="2" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="3" Content="3" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="4" Content="4" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="5" Content="5" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="6" Content="6" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="7" Content="7" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="8" Content="8" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="9" Content="9" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="0" Content="0" />
+                    </UniformGrid>
+                    <UniformGrid Rows="1" Columns="10">
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="Q" Content="Q" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="W" Content="W" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="E" Content="E" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="R" Content="R" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="T" Content="T" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="Y" Content="Y" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="U" Content="U" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="I" Content="I" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="O" Content="O" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="P" Content="P" />
+                    </UniformGrid>
+                    <UniformGrid Rows="1" Columns="10">
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="A" Content="A" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="S" Content="S" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="D" Content="D" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="F" Content="F" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="G" Content="G" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="H" Content="H" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="J" Content="J" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="K" Content="K" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="L" Content="L" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="-" Content="-" />
+                    </UniformGrid>
+                    <UniformGrid Rows="1" Columns="10">
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="Z" Content="Z" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="X" Content="X" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="C" Content="C" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="V" Content="V" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="B" Content="B" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="N" Content="N" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="M" Content="M" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="." Content="." />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="/" Content="/" />
+                        <Button Style="{StaticResource Key}" Command="{Binding KeyCommand}" CommandParameter="?" Content="?" />
+                    </UniformGrid>
+                    <Grid Margin="2,2,2,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="6" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Style="{StaticResource Key}"
+                                Command="{Binding KeyCommand}" CommandParameter="SPACE" Content="Razmak" />
+                        <Button Grid.Column="2" Style="{StaticResource Key}"
+                                Command="{Binding KeyCommand}" CommandParameter="BACK" Content="&#x232B;" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

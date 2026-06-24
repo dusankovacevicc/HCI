@@ -1,0 +1,23 @@
+<Application x:Class="NetworkService.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:conv="clr-namespace:NetworkService.Converters"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Theme.xaml" />
+                <ResourceDictionary Source="Resources/TypeImages.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Shared value converters -->
+            <conv:BoolToVisibilityConverter x:Key="BoolToVis" />
+            <conv:BoolToVisibilityConverter x:Key="InverseBoolToVis" Invert="True" />
+            <conv:ValidToBrushConverter x:Key="ValidToBrush" />
+            <conv:ImageKeyConverter x:Key="ImageKey" />
+            <conv:ToastTypeToBrushConverter x:Key="ToastTypeToBrush" />
+            <conv:NullToVisibilityConverter x:Key="NullToVis" />
+            <BooleanToVisibilityConverter x:Key="BoolToVisBuiltIn" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
