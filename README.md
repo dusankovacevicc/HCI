@@ -63,9 +63,3 @@ Sav UI je vezan kroz **DataBinding**; navigacija se radi preko `DataTemplate`-a 
 - **Povratne informacije** — Toast notifikacije za uspešne akcije (tip, naslov, sadržaj), potvrda pri brisanju kao in-app overlay, ToolTip-ovi i promene kursora; **nigde se ne koristi MessageBox**.
 - **Prečice** — `Ctrl+H` (Home), `Ctrl+1/2/3` (Entiteti / Mreža / Grafikon), `Ctrl+Z` (Undo).
 - **Modelovanje (T7)** — `Entity` (ID:int jedinstven, Naziv, Tip), tipovi RTD/TermoSprega sa unapred definisanim (vektorskim) slikama; opseg 250–350 °C.
-
-## Napomene za odbranu
-
-- Aplikacija startuje sa **4 unapred kreirana entiteta** sa validnim podacima primerenim temi (vidi `Services/SeedData.cs`).
-- Slike tipova su realizovane kao **vektorske `DrawingImage`** ikonice (`Resources/TypeImages.xaml`) — ostaju oštre na svakoj veličini i čuvaju se uz projekat; `EntityType.ImageKey` je ključ koji konverter mapira na odgovarajuću ikonicu.
-- Jezik koda je dosledno **engleski**, jezik korisničkog interfejsa dosledno **srpski**.
