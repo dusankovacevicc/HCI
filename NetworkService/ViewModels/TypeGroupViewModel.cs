@@ -4,11 +4,7 @@ using NetworkService.MVVM;
 
 namespace NetworkService.ViewModels
 {
-    /// <summary>
-    /// A group in the TreeView of the Network Display View. Entities are grouped
-    /// by type; a group lists only the entities of that type which are NOT yet
-    /// placed on the Drag&amp;Drop grid.
-    /// </summary>
+
     public class TypeGroupViewModel : ObservableObject
     {
         public TypeGroupViewModel(string typeName)

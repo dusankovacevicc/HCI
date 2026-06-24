@@ -12,13 +12,7 @@ using NetworkService.Undo;
 
 namespace NetworkService.ViewModels
 {
-    /// <summary>
-    /// Root ViewModel. Owns the shared data store and services, hosts the child
-    /// "page" ViewModels and provides global navigation, the Home button and the
-    /// step-by-step Undo button (CG3). It also wires the simulator server to the
-    /// log and the entities, and manages a thread-safe snapshot of the entity list
-    /// for the background server thread.
-    /// </summary>
+
     public class MainViewModel : ObservableObject, IAppController
     {
         private readonly object _snapshotLock = new object();
@@ -44,7 +38,7 @@ namespace NetworkService.ViewModels
 
             Entities.CollectionChanged += OnEntitiesCollectionChanged;
 
-            // Seed sample data before child ViewModels are built so they pick it up.
+
             foreach (Entity entity in SeedData.CreateInitialEntities())
             {
                 Entities.Add(entity);
@@ -118,8 +112,7 @@ namespace NetworkService.ViewModels
             PageViewModel previous = CurrentViewModel;
             CurrentViewModel = target;
 
-            // Navigation is part of the undo history: undoing it returns to the
-            // previous view (CG3 - Undo also goes back to the previous screen).
+
             if (!_suppressUndo && previous != null)
             {
                 UndoManager.Push(
@@ -194,7 +187,7 @@ namespace NetworkService.ViewModels
 
         private void OnEntitiesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            // Rebuild the immutable snapshot read by the background server thread.
+
             lock (_snapshotLock)
             {
                 _snapshot = Entities.ToList();
@@ -203,7 +196,7 @@ namespace NetworkService.ViewModels
 
         private void OnMeasurementReceived(Entity entity, double value, DateTime timestamp)
         {
-            // Marshal to the UI thread: the event comes from a background socket thread.
+
             Application.Current?.Dispatcher.Invoke(() =>
             {
                 entity.LastValue = value;

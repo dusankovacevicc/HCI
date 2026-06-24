@@ -3,11 +3,7 @@ using NetworkService.Models;
 
 namespace NetworkService.Services
 {
-    /// <summary>
-    /// Provides a few predefined, theme-relevant entities (reactor temperature)
-    /// so that the application starts with valid sample data, as required for the
-    /// defense ("minimum three already created entities with valid data").
-    /// </summary>
+
     public static class SeedData
     {
         public static IEnumerable<Entity> CreateInitialEntities()

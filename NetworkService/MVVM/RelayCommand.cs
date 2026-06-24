@@ -3,11 +3,7 @@ using System.Windows.Input;
 
 namespace NetworkService.MVVM
 {
-    /// <summary>
-    /// A reusable ICommand implementation that relays its Execute and CanExecute
-    /// logic to delegates supplied by a ViewModel. This is the standard way of
-    /// binding Buttons (and other command sources) to ViewModel methods in MVVM.
-    /// </summary>
+
     public class RelayCommand : ICommand
     {
         private readonly Action<object> _execute;
@@ -19,7 +15,7 @@ namespace NetworkService.MVVM
             _canExecute = canExecute;
         }
 
-        /// <summary>Convenience constructor for parameterless commands.</summary>
+
         public RelayCommand(Action execute, Func<bool> canExecute = null)
         {
             if (execute == null) throw new ArgumentNullException(nameof(execute));

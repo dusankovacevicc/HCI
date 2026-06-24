@@ -3,11 +3,7 @@ using NetworkService.MVVM;
 
 namespace NetworkService.ViewModels
 {
-    /// <summary>
-    /// One cell ("canvas") of the Drag&amp;Drop network grid. Holds at most one
-    /// entity and exposes its layout position so connection lines can be drawn
-    /// from cell centre to cell centre.
-    /// </summary>
+
     public class SlotViewModel : ObservableObject
     {
         private Entity _entity;
@@ -47,7 +43,7 @@ namespace NetworkService.ViewModels
         public bool IsOccupied => _entity != null;
         public bool IsEmpty => _entity == null;
 
-        /// <summary>Highlighted while chosen as an endpoint for a new connection.</summary>
+
         public bool IsSelected
         {
             get => _isSelected;

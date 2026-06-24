@@ -7,11 +7,7 @@ using NetworkService.MVVM;
 
 namespace NetworkService.ViewModels
 {
-    /// <summary>
-    /// The start screen ("Reactor Monitor"). Shows the theme icon, the navigation
-    /// buttons (Entiteti / Mreza / Grafikon) and a warning banner with the number
-    /// of entities whose last measurement is out of the valid 250-350 C range.
-    /// </summary>
+
     public class HomeViewModel : PageViewModel
     {
         public HomeViewModel(IAppController controller) : base(controller)

@@ -11,17 +11,7 @@ using NetworkService.Models;
 
 namespace NetworkService.Services
 {
-    /// <summary>
-    /// Acts as the TCP server side of the communication with MeteringSimulator.
-    /// It answers the simulator's "Object count?" request with the current number
-    /// of entities, and receives "Object_&lt;index&gt;:&lt;value&gt;" messages with new
-    /// measurements. The index refers to the position of the entity in the list
-    /// held by the NetworkService.
-    ///
-    /// The server also owns the MeteringSimulator process: it launches it on start
-    /// and restarts it whenever entities are added or removed (so that the object
-    /// count is re-read), as required by the specification.
-    /// </summary>
+
     public class SimulatorServer
     {
         private const string Host = "127.0.0.1";
@@ -33,11 +23,6 @@ namespace NetworkService.Services
         private Process _simulatorProcess;
         private volatile bool _running;
 
-        /// <summary>
-        /// Raised (on a background thread) when a measurement arrives. Arguments:
-        /// the target entity, the measured value and the timestamp. Consumers must
-        /// marshal UI work to the dispatcher themselves.
-        /// </summary>
         public event Action<Entity, double, DateTime> MeasurementReceived;
 
         public SimulatorServer(Func<List<Entity>> entitiesSnapshotProvider)
@@ -70,10 +55,7 @@ namespace NetworkService.Services
             KillSimulator();
         }
 
-        /// <summary>
-        /// Restarts the simulator process so it re-reads the current object count.
-        /// Called automatically after an entity is added or removed.
-        /// </summary>
+
         public void RestartSimulator()
         {
             KillSimulator();
@@ -120,7 +102,7 @@ namespace NetworkService.Services
             }
             catch (Exception)
             {
-                // Client disconnected - nothing to do.
+
             }
         }
 
@@ -133,7 +115,7 @@ namespace NetworkService.Services
                 return;
             }
 
-            // Expected format: Object_<index>:<value>
+
             if (message.StartsWith("Object_", StringComparison.OrdinalIgnoreCase))
             {
                 int colon = message.IndexOf(':');
@@ -197,7 +179,7 @@ namespace NetworkService.Services
             }
             catch (Exception)
             {
-                // Process already gone.
+
             }
             finally
             {
@@ -206,11 +188,7 @@ namespace NetworkService.Services
             }
         }
 
-        /// <summary>
-        /// Locates MeteringSimulator.exe by walking up from this application's
-        /// output directory and searching for the sibling MeteringSimulator
-        /// project's build output.
-        /// </summary>
+
         private static string ResolveSimulatorPath()
         {
             DirectoryInfo dir = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);

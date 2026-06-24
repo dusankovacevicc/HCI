@@ -6,19 +6,12 @@ using NetworkService.Models;
 
 namespace NetworkService.Services
 {
-    /// <summary>
-    /// Writes every received measurement to a log file (.txt) on disk and reads
-    /// it back for the graph. Each line stores the timestamp, the entity it
-    /// refers to and the measured value.
-    ///
-    /// Line format (pipe separated):
-    ///   yyyy-MM-dd HH:mm:ss | entityId | entityName | value | VALID/INVALID
-    /// </summary>
+
     public class LogService
     {
         private static readonly object FileLock = new object();
 
-        /// <summary>Raised on the calling thread whenever a measurement is logged.</summary>
+
         public event Action<MeasurementRecord> MeasurementLogged;
 
         public string LogFilePath { get; }
@@ -28,7 +21,7 @@ namespace NetworkService.Services
             LogFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log.txt");
         }
 
-        /// <summary>Appends a new measurement to the log and notifies listeners.</summary>
+
         public void Log(Entity entity, double value, DateTime timestamp)
         {
             bool valid = value >= Entity.MinValidValue && value <= Entity.MaxValidValue;
@@ -49,10 +42,6 @@ namespace NetworkService.Services
             MeasurementLogged?.Invoke(new MeasurementRecord(entity.Id, value, timestamp));
         }
 
-        /// <summary>
-        /// Reads the last <paramref name="count"/> measurements for the given
-        /// entity from the log file (oldest-first). Used to initialise the graph.
-        /// </summary>
         public List<MeasurementRecord> ReadLast(int entityId, int count)
         {
             var result = new List<MeasurementRecord>();

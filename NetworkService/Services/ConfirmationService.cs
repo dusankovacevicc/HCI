@@ -4,11 +4,7 @@ using System.Windows.Input;
 
 namespace NetworkService.Services
 {
-    /// <summary>
-    /// Drives an in-app confirmation overlay (used before destructive actions
-    /// such as deleting an entity). MessageBox is intentionally avoided; the
-    /// confirmation is rendered as a styled overlay inside the application.
-    /// </summary>
+
     public class ConfirmationService : ObservableObject
     {
         private bool _isVisible;

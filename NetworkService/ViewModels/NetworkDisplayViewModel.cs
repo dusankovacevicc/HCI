@@ -6,18 +6,10 @@ using NetworkService.Models;
 
 namespace NetworkService.ViewModels
 {
-    /// <summary>
-    /// Network Display View. A 3x4 grid of cells (12 canvases) onto which entities
-    /// are placed using Drag&amp;Drop. Entities not yet placed are listed in a
-    /// TreeView grouped by type; once placed they disappear from the TreeView and
-    /// reappear there when removed from the grid. Placed entities can be connected
-    /// with lines that follow them when they are moved. Deleting an entity removes
-    /// it and all of its connections from the grid. The whole state is preserved
-    /// across navigation because a single instance of this ViewModel is kept alive.
-    /// </summary>
+
     public class NetworkDisplayViewModel : PageViewModel
     {
-        // Grid layout constants (tuned for the portrait phone window).
+
         private const int Columns = 3;
         private const int Rows = 4;
         private const double CellWidth = 104;
@@ -73,7 +65,7 @@ namespace NetworkService.ViewModels
                 });
         }
 
-        /// <summary>Moves an already placed entity from one cell to another empty cell.</summary>
+
         public void MoveOnGrid(SlotViewModel source, SlotViewModel target)
         {
             if (source == null || target == null || source == target ||
@@ -97,7 +89,7 @@ namespace NetworkService.ViewModels
                 });
         }
 
-        /// <summary>Returns a placed entity to the TreeView and drops its connections.</summary>
+
         public void ReturnToTree(SlotViewModel source)
         {
             if (source == null || !source.IsOccupied)
@@ -138,10 +130,7 @@ namespace NetworkService.ViewModels
 
         // ----- Connections ------------------------------------------------------------
 
-        /// <summary>
-        /// Click behaviour used to connect two entities: first click selects an
-        /// endpoint, the second click on a different placed entity creates a line.
-        /// </summary>
+
         public void SlotClicked(SlotViewModel slot)
         {
             if (slot == null || !slot.IsOccupied)
@@ -173,7 +162,7 @@ namespace NetworkService.ViewModels
                 return;
             }
 
-            // Prevent drawing more than one line between the same pair of entities.
+
             if (Connections.Any(c => c.Links(a, b)))
             {
                 Controller.Toast.Show("Veza", "Veza između ova dva entiteta već postoji.", Services.ToastType.Info);
@@ -202,7 +191,7 @@ namespace NetworkService.ViewModels
             }
         }
 
-        /// <summary>Recomputes line endpoints from the current cell of each entity.</summary>
+
         private void UpdateConnectionGeometry()
         {
             foreach (ConnectionViewModel connection in Connections)
@@ -277,7 +266,7 @@ namespace NetworkService.ViewModels
             }
         }
 
-        /// <summary>Removes a deleted entity from grid, tree and all of its connections.</summary>
+
         private void RemoveEntityCompletely(Entity entity)
         {
             SlotViewModel slot = FindSlot(entity);

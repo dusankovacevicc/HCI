@@ -6,7 +6,7 @@ using NetworkService.Services;
 
 namespace NetworkService.ViewModels
 {
-    /// <summary>Identifies which text field the virtual keyboard types into.</summary>
+
     public enum InputField
     {
         None,
@@ -14,11 +14,7 @@ namespace NetworkService.ViewModels
         Name
     }
 
-    /// <summary>
-    /// Form for creating a new entity. Every field is validated individually and
-    /// its error message is shown directly beneath the field (no MessageBox).
-    /// Text is entered through the custom on-screen virtual keyboard (CG3).
-    /// </summary>
+
     public class AddEntityViewModel : PageViewModel
     {
         private string _idText = string.Empty;
@@ -118,7 +114,7 @@ namespace NetworkService.ViewModels
         public bool HasNameError => !string.IsNullOrEmpty(NameError);
         public bool HasTypeError => !string.IsNullOrEmpty(TypeError);
 
-        /// <summary>The field the virtual keyboard currently types into.</summary>
+  
         public InputField ActiveField
         {
             get => _activeField;
@@ -129,7 +125,7 @@ namespace NetworkService.ViewModels
         public ICommand CancelCommand { get; }
         public ICommand KeyCommand { get; }
 
-        /// <summary>Handles a press on the virtual keyboard.</summary>
+
         private void PressKey(string key)
         {
             if (key == null)
@@ -148,7 +144,7 @@ namespace NetworkService.ViewModels
                 }
                 else if (key.Length == 1 && char.IsDigit(key[0]))
                 {
-                    // ID is an integer, so only digits are accepted here.
+
                     IdText += key;
                 }
             }
@@ -174,7 +170,7 @@ namespace NetworkService.ViewModels
 
         private void Save()
         {
-            // Re-validate every field so errors appear even if untouched.
+
             ValidateId();
             ValidateName();
             ValidateType();

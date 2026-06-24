@@ -11,12 +11,7 @@ namespace NetworkService.Services
         Warning
     }
 
-    /// <summary>
-    /// Shows non-blocking in-app feedback messages (Toast notifications). Used
-    /// consistently for every completed action (add / delete). MessageBox is not
-    /// used anywhere in the application, as required by the specification.
-    /// Each toast carries a type, a title and content text.
-    /// </summary>
+
     public class ToastService : ObservableObject
     {
         private readonly DispatcherTimer _timer;

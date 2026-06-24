@@ -8,13 +8,7 @@ using NetworkService.Services;
 
 namespace NetworkService.ViewModels
 {
-    /// <summary>
-    /// Network Entities View. Shows all entities in a table, supports adding and
-    /// deleting them, and implements search variant P1: two radio buttons
-    /// ("Naziv" / "Tip") together with a text box. Selecting an option and typing
-    /// (part of) a name shows only entities whose name or type name partially or
-    /// fully matches the entered text.
-    /// </summary>
+
     public class NetworkEntitiesViewModel : PageViewModel
     {
         private readonly CollectionViewSource _viewSource;
@@ -23,7 +17,7 @@ namespace NetworkService.ViewModels
         private string _searchText = string.Empty;
         private Entity _selectedEntity;
 
-        // The criteria actually applied (only updated when "Filtriraj" is pressed).
+
         private string _appliedText = string.Empty;
         private bool _appliedByName = true;
 
@@ -40,7 +34,7 @@ namespace NetworkService.ViewModels
 
         public override string Title => "Entiteti";
 
-        /// <summary>Filtered, bindable view of the entities for the DataGrid.</summary>
+
         public ICollectionView Entities => _viewSource.View;
 
         public bool SearchByName

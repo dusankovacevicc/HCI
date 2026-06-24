@@ -5,14 +5,7 @@ using NetworkService.Services;
 
 namespace NetworkService.ViewModels
 {
-    /// <summary>
-    /// Measurement Graph View. Draws the history (last five values) of the
-    /// selected entity, based on the data written to the log file. The graph is
-    /// updated in real time as new measurements arrive (no manual refresh).
-    /// The drawing itself (graph type G3 - circles of different radii along the
-    /// time axis) is produced programmatically in the View, without any ready-made
-    /// chart control.
-    /// </summary>
+
     public class MeasurementGraphViewModel : PageViewModel
     {
         private const int MaxPoints = 5;
@@ -27,14 +20,13 @@ namespace NetworkService.ViewModels
 
         public override string Title => "Grafikon";
 
-        /// <summary>Entities offered in the ComboBox for selecting the graph source.</summary>
         public ObservableCollection<Entity> Entities => Controller.Entities;
 
-        /// <summary>The last (up to five) measurements drawn on the graph, oldest-first.</summary>
+
         public ObservableCollection<MeasurementRecord> RecentMeasurements { get; } =
             new ObservableCollection<MeasurementRecord>();
 
-        /// <summary>Raised when the graph data changes so the View can redraw.</summary>
+
         public event Action GraphChanged;
 
         public Entity SelectedEntity

@@ -7,7 +7,7 @@ using NetworkService.Services;
 
 namespace NetworkService.Converters
 {
-    /// <summary>Returns Visible when the bound bool is true, Collapsed otherwise.</summary>
+
     public class BoolToVisibilityConverter : IValueConverter
     {
         public bool Invert { get; set; }
@@ -29,7 +29,7 @@ namespace NetworkService.Converters
         }
     }
 
-    /// <summary>Maps an entity's validity (true/false) to a status brush.</summary>
+
     public class ValidToBrushConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
